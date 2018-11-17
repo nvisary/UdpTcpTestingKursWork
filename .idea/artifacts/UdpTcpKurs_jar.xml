@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="UdpTcpKurs:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/UdpTcpKurs_jar</output-path>
+    <root id="archive" name="UdpTcpKurs.jar">
+      <element id="module-output" name="UdpTcpKurs" />
+    </root>
+  </artifact>
+</component>
