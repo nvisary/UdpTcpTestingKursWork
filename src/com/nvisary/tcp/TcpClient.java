@@ -26,12 +26,12 @@ public class TcpClient {
             float sendingTime;
             float receivingTime;
 
-            objectOutputStream.writeObject("ping");
             sendingTime = System.nanoTime();
+            objectOutputStream.writeObject(new byte[10000]);
             objectInputStream.readObject();
             receivingTime = System.nanoTime();
             System.out.println("Packet time: " + (receivingTime - sendingTime));
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         }
 
         /*Thread receiveMessageThread = new Thread(new Runnable() {

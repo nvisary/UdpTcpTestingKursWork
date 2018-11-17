@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class RunClient {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         System.out.println("Please input server ip and port.");
         System.out.print("Server ip: ");
         Scanner scanner = new Scanner(System.in);

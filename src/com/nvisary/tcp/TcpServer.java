@@ -38,9 +38,9 @@ public class TcpServer {
                     try {
                         boolean isMessagingRunning = true;
                         while (isMessagingRunning) {
-                            String message = (String) objectInputStream.readObject();
-                            isMessagingRunning = !message.equals("/stop");
-                            objectOutputStream.writeObject("Answer " + message);
+                            byte[] message = (byte[]) objectInputStream.readObject();
+                            //isMessagingRunning = !message.equals("/stop");
+                            objectOutputStream.writeObject(message);
                         }
 
                     } catch (IOException | ClassNotFoundException e) {
