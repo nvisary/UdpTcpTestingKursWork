@@ -39,6 +39,7 @@ public class TcpServer {
                         boolean isMessagingRunning = true;
                         while (isMessagingRunning) {
                             byte[] message = (byte[]) objectInputStream.readObject();
+                            System.out.println(message.length / 1000 + " Kbytes");
                             //isMessagingRunning = !message.equals("/stop");
                             objectOutputStream.writeObject(message);
                         }

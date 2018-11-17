@@ -25,12 +25,16 @@ public class TcpClient {
         while (true) {
             float sendingTime;
             float receivingTime;
-
+            System.out.println("Try to send...");
             sendingTime = System.nanoTime();
-            objectOutputStream.writeObject(new byte[10000]);
-            objectInputStream.readObject();
+            objectOutputStream.writeObject(new byte[10000000]);
+            System.out.println("Send.");
             receivingTime = System.nanoTime();
-            System.out.println("Packet time: " + (receivingTime - sendingTime));
+            System.out.println("Try to receiving...");
+            objectInputStream.readObject();
+            System.out.println("Receive.");
+            System.out.println("Packet time: " + (receivingTime - sendingTime) * 1000 + " seconds");
+            System.out.println("Thread sleep...");
             Thread.sleep(3000);
         }
 
