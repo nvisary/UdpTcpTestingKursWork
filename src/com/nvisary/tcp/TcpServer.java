@@ -39,10 +39,9 @@ public class TcpServer {
                         boolean isMessagingRunning = true;
                         while (isMessagingRunning) {
                             String message = (String) objectInputStream.readObject();
-                            System.out.println("Client: " + message);
                             isMessagingRunning = !message.equals("/stop");
+                            objectOutputStream.writeObject("Answer " + message);
                         }
-
 
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
@@ -50,7 +49,7 @@ public class TcpServer {
                 }
             });
 
-            Thread sendMessageThread = new Thread(new Runnable() {
+            /*Thread sendMessageThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -66,10 +65,8 @@ public class TcpServer {
                         e.printStackTrace();
                     }
                 }
-            });
-
-
-            sendMessageThread.start();
+            });*/
+            //sendMessageThread.start();
             receiveMessageThread.start();
         }
 

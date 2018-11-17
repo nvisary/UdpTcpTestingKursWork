@@ -11,17 +11,30 @@ public class TcpClient {
     private int serverPort;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
+
     public TcpClient(String serverIp, int serverPort) {
         this.serverIp = serverIp;
         this.serverPort = serverPort;
     }
 
-    public void runClient() throws IOException {
+    public void runClient() throws IOException, InterruptedException, ClassNotFoundException {
         Socket socket = new Socket(serverIp, serverPort);
         objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         objectInputStream = new ObjectInputStream(socket.getInputStream());
 
-        Thread receiveMessageThread = new Thread(new Runnable() {
+        while (true) {
+            float sendingTime;
+            float receivingTime;
+
+            objectOutputStream.writeObject("ping");
+            sendingTime = System.nanoTime();
+            objectInputStream.readObject();
+            receivingTime = System.nanoTime();
+            System.out.println("Packet time: " + (receivingTime - sendingTime));
+            Thread.sleep(5000);
+        }
+
+        /*Thread receiveMessageThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -47,6 +60,7 @@ public class TcpClient {
                     while (isMessaging) {
                         Scanner scanner = new Scanner(System.in);
                         String message = scanner.nextLine();
+                        sendingTime = System.nanoTime();
                         objectOutputStream.writeObject(message);
                         isMessaging = !message.equals("/stop");
                     }
@@ -59,6 +73,6 @@ public class TcpClient {
 
 
         sendMessageThread.start();
-        receiveMessageThread.start();
+        receiveMessageThread.start();*/
     }
 }
